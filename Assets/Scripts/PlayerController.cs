@@ -1,9 +1,7 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    private static PlayerController instance;
     private PlayerControls playerControls;
 
     [Header("---- Physical ----")]
@@ -11,17 +9,19 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer spriteRenderer;
     private Vector2 movement;
+    private bool facingLeft = false;
 
     [Header("---- Parameter ----")]
     [SerializeField] private float moveSpeed;
+    
+    public bool FacingLeft
+    {
+        get { return facingLeft; }
+        set { facingLeft = value; }
+    }
 
     private void Awake()
     {
-        if (instance == null)
-            instance = this;
-        else if (instance != this)
-            Destroy(gameObject);
-
         playerControls = new PlayerControls();
     }
 
@@ -66,10 +66,12 @@ public class PlayerController : MonoBehaviour
         if (mousePos.x < playerScreenPoint.x)
         {
             spriteRenderer.flipX = true;
+            FacingLeft = true;
         }
         else
         {
             spriteRenderer.flipX = false;
+            FacingLeft = false;
         }
     }
 }

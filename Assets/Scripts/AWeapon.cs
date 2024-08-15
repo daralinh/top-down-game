@@ -1,29 +1,42 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public abstract class AWeapon : MonoBehaviour
 {
     [SerializeField]protected float dmg;
+    [SerializeField]protected Animator animator;
+    [SerializeField]protected SlashEffect slashEffect;
+    [SerializeField]protected HitboxWeapon hitboxWeapon;
+
     protected PlayerControls playerControls;
     protected PlayerController playerController;
     protected ActiveWeapon activeWeapon;
-    protected Animator animator;
 
-    public float DMG;
+    public float Damage
+    {
+        get { return dmg; }
+        set { dmg = value; }
+    }
 
     protected virtual void Awake()
     {
         playerController = GetComponentInParent<PlayerController>();
         playerControls = new PlayerControls();
         activeWeapon = GetComponentInParent<ActiveWeapon>();
-        animator = GetComponent<Animator>();
-        DMG = dmg;
+        hitboxWeapon.gameObject.SetActive(false);
+    }
+
+    private void OnEnable()
+    {
+        playerControls.Enable();
     }
 
     protected virtual void Start()
     {
+        if (animator == null)
+        {
+            Debug.Log("null animator");
+        }
+
         playerControls.Combat.Attack.started += _ => Attacking();
     }
 
@@ -32,9 +45,9 @@ public abstract class AWeapon : MonoBehaviour
         MouseFollowWithOffset();
     }
 
-    public virtual void EnableOn()
+    public void HideHitbox()
     {
-        gameObject.SetActive(true);
+        hitboxWeapon.gameObject.SetActive(false);
     }
 
     protected virtual void Attacking()
@@ -61,6 +74,38 @@ public abstract class AWeapon : MonoBehaviour
         else
         {
             activeWeapon.transform.rotation = Quaternion.Euler(0, 0, angle);
+        }
+    }
+
+    public void SlashSwingUp()
+    {
+        slashEffect.gameObject.transform.rotation = Quaternion.Euler(-180, 0 ,0);
+        slashEffect.gameObject.SetActive(true);
+        hitboxWeapon.gameObject.SetActive(true);
+
+        if (playerController.FacingLeft)
+        {
+            slashEffect.GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else 
+        {
+            slashEffect.GetComponent<SpriteRenderer>().flipX = false;
+        }
+    }
+
+    public void SlashSwingDown()
+    {
+        slashEffect.gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+        slashEffect.gameObject.SetActive(true);
+        hitboxWeapon.gameObject.SetActive(true);
+
+        if (playerController.FacingLeft)
+        {
+            slashEffect.GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else
+        {
+            slashEffect.GetComponent<SpriteRenderer>().flipX = false;
         }
     }
 }
