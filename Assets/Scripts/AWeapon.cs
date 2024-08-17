@@ -5,7 +5,6 @@ public abstract class AWeapon : MonoBehaviour
     [SerializeField]protected float dmg;
     [SerializeField]protected Animator animator;
     [SerializeField]protected SlashEffect slashEffect;
-    [SerializeField]protected HitboxWeapon hitboxWeapon;
 
     protected PlayerControls playerControls;
     protected PlayerController playerController;
@@ -22,7 +21,6 @@ public abstract class AWeapon : MonoBehaviour
         playerController = GetComponentInParent<PlayerController>();
         playerControls = new PlayerControls();
         activeWeapon = GetComponentInParent<ActiveWeapon>();
-        hitboxWeapon.gameObject.SetActive(false);
     }
 
     private void OnEnable()
@@ -45,9 +43,9 @@ public abstract class AWeapon : MonoBehaviour
         MouseFollowWithOffset();
     }
 
-    public void HideHitbox()
+    public void NotAttack()
     {
-        hitboxWeapon.gameObject.SetActive(false);
+        slashEffect.gameObject.SetActive(false);
     }
 
     protected virtual void Attacking()
@@ -81,7 +79,6 @@ public abstract class AWeapon : MonoBehaviour
     {
         slashEffect.gameObject.transform.rotation = Quaternion.Euler(-180, 0 ,0);
         slashEffect.gameObject.SetActive(true);
-        hitboxWeapon.gameObject.SetActive(true);
 
         if (playerController.FacingLeft)
         {
@@ -97,7 +94,6 @@ public abstract class AWeapon : MonoBehaviour
     {
         slashEffect.gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
         slashEffect.gameObject.SetActive(true);
-        hitboxWeapon.gameObject.SetActive(true);
 
         if (playerController.FacingLeft)
         {
