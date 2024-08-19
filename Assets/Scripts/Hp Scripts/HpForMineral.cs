@@ -5,9 +5,9 @@ public class HpForMineral : AHpManager
     [SerializeField] private AMinerals aMinerals;
     public bool SetSmall { get; private set; }
 
-    public override void TakeDMG(float takedDMG)
+    public override void TakeDMG(Transform source, float takedDMG, bool canKnockBack)
     {
-        flashSprite.Flash();
+        canKnockBack = false;
 
         hp = Mathf.Max(hp - takedDMG, 0);
 

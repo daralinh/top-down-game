@@ -3,22 +3,27 @@ using UnityEngine;
 public class HpForEmeny : AHpManager
 {
     [SerializeField] protected Animator animator;
+    [SerializeField] protected KnockBack knockBack;
+    [SerializeField] protected AEmeny emeny;
 
-    public override void TakeDMG(float takedDMG)
+    public override void TakeDMG(Transform source, float takedDMG, bool canKnockBack)
     {
         flashSprite.Flash();
 
-        animator.SetBool("Run", false);
-
         hp = Mathf.Max(hp - takedDMG, 0);
+
+        if (canKnockBack)
+        {
+            knockBack.GetKnockBack(source);
+        }
 
         if (hp > 0)
         {
-            animator.SetTrigger("TakeDMG");
+            emeny.HandlerTakeDMG();
         }
         else
         {
-            animator.SetTrigger("Death");
+            emeny.Death();
         }
     }
 }

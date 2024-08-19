@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 3468978188620133805}
   - component: {fileID: 5562632037763127668}
   - component: {fileID: 109062736398366814}
+  - component: {fileID: 8523221873274805547}
   m_Layer: 0
   m_Name: Armadillo
   m_TagString: Untagged
@@ -189,10 +190,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hpForAnimal: {fileID: 109062736398366814}
   animator: {fileID: 6013999646518036583}
-  capsuleCollider2D: {fileID: 5483827681609337104}
-  buffHpWhenTakeDMG: 100
   moveToTarget: {fileID: 3468978188620133805}
+  knockBack: {fileID: 8523221873274805547}
   timeToDefense: 5
+  buffHpWhenTakeDMG: 100
 --- !u!114 &623072832253353009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,6 +246,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75364d63a6d551646b0756f39d8bf617, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originHp: 40
+  originHp: 41
   flashSprite: {fileID: 623072832253353009}
   animator: {fileID: 6013999646518036583}
+  knockBack: {fileID: 8523221873274805547}
+  animal: {fileID: 1839096958001537239}
+--- !u!114 &8523221873274805547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6835107319268086531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6440201f2e1c5184585134de3da9e003, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 0.15
+  thurst: 5
+  moveToTarget: {fileID: 3468978188620133805}

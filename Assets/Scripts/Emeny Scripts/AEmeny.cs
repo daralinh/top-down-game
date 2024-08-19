@@ -13,8 +13,13 @@ public abstract class AEmeny : MonoBehaviour
         animator.SetBool("Alive", true);
     }
 
-    public virtual void HandlerDeath()
+    public virtual void DeathEvent()
     {
         gameObject.SetActive(false);
+    }
+
+    public void Death()
+    {
+        animator.SetTrigger("Death");
     }
 }

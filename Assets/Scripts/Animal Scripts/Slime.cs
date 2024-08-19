@@ -4,10 +4,13 @@ using UnityEngine;
 public class Slime : AAnimal
 {
     [SerializeField] private MoveToTarget moveToTarget;
+
+
     [SerializeField] private float timeToBuffSpeed;
     [SerializeField] private float speedToBuff;
 
     private float originSpeed;
+    private Coroutine coroutine;
 
     private void Start()
     {
@@ -16,15 +19,12 @@ public class Slime : AAnimal
 
     public override void DefenseHandler()
     {
-        base.DefenseHandler();
-
-        moveToTarget.ChangeSpeed(moveToTarget.Speed + speedToBuff);
-        animator.SetBool("Run", true);
-        StartCoroutine(Defense());
+        animator.SetTrigger("TakeDMG");
     }
 
     private IEnumerator Defense()
     {
+        animator.SetBool("Run", true);
         yield return new WaitForSeconds(timeToBuffSpeed);
 
         IsDefensing = false;
@@ -41,15 +41,27 @@ public class Slime : AAnimal
         }
     }
 
-    protected override void ResetDefense()
+    public void TakeDMGEvent()
     {
-        IsDefensing = true;
+        base.DefenseHandler();
 
+        moveToTarget.ChangeSpeed(moveToTarget.Speed + speedToBuff);
+        coroutine = StartCoroutine(Defense());
     }
 
-    public override void Death()
+    protected override void ResetDefense()
     {
-        StopAllCoroutines();
-        base.Death();
+        StopCoroutine(coroutine);
+        coroutine = StartCoroutine(Defense());
+    }
+
+    public override void DeathEvent()
+    {
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+        }
+
+        gameObject.SetActive(false);
     }
 }

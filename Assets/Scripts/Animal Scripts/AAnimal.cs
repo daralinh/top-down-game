@@ -1,14 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class AAnimal : MonoBehaviour
 {
     [SerializeField] protected HpForAnimal hpForAnimal;
     [SerializeField] protected Animator animator;
-    [SerializeField] protected CapsuleCollider2D capsuleCollider2D;
 
-    protected Coroutine coroutine;
     public bool IsDefensing {  get; protected set; }
 
     protected void Awake()
@@ -20,6 +16,7 @@ public abstract class AAnimal : MonoBehaviour
     {
         if (IsDefensing)
         {
+            Debug.Log("defensing");
             ResetDefense();
             return;
         }
@@ -29,9 +26,14 @@ public abstract class AAnimal : MonoBehaviour
 
     protected abstract void ResetDefense();
 
+    public virtual void DeathEvent()
+    { 
+        gameObject.SetActive(false);
+    }
+
     public virtual void Death()
     {
         IsDefensing = false;
-        gameObject.SetActive(false);
+        animator.SetTrigger("Death");
     }
 }

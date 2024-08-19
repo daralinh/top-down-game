@@ -2,10 +2,14 @@ using UnityEngine;
 
 public abstract class AWeapon : MonoBehaviour
 {
-    [SerializeField]protected float dmg;
-    [SerializeField]protected Animator animator;
-    [SerializeField]protected SlashEffect slashEffect;
-    [SerializeField]protected PolygonCollider2D polygonCollider2D;
+    [Header("---- Components ----")]
+    [SerializeField] protected SlashEffect slashEffect;
+    [SerializeField] protected PolygonCollider2D polygonCollider2D;
+
+    [Header("---- Parameters ----")]
+    [SerializeField] protected float dmg;
+    [SerializeField] protected Animator animator;
+    [SerializeField] protected bool canKnockBack;
     
     protected PlayerControls playerControls;
     protected PlayerController playerController;
@@ -14,7 +18,13 @@ public abstract class AWeapon : MonoBehaviour
     public float Damage
     {
         get { return dmg; }
-        private set { dmg = value; }
+        protected set { dmg = value; }
+    }
+
+    public bool CanKnockBack
+    {
+        get { return canKnockBack; }
+        protected set { canKnockBack = value; }
     }
 
     protected virtual void Awake()

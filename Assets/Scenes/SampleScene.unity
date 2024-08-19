@@ -569,17 +569,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1763731889841677523, guid: b2ade3d2c706b7040a761bbc7adf5174, type: 3}
-      propertyPath: originSpeed
-      value: 1.1
-      objectReference: {fileID: 0}
     - target: {fileID: 2108474609473190031, guid: b2ade3d2c706b7040a761bbc7adf5174, type: 3}
       propertyPath: m_Name
       value: Slime
-      objectReference: {fileID: 0}
-    - target: {fileID: 6044029787230573015, guid: b2ade3d2c706b7040a761bbc7adf5174, type: 3}
-      propertyPath: speedToBuff
-      value: 1.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

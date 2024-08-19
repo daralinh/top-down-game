@@ -11,13 +11,13 @@ public abstract class AHpManager : MonoBehaviour
     public float HP
     {
         get { return hp; }
-        private set { hp = Mathf.Max(0, value); }
+        private set { hp = value; }
     }
 
     public float OriginHp
     {
         get { return originHp; }
-        private set { originHp = Mathf.Max(1, value); }
+        private set { originHp = value; }
     }
 
     protected virtual void Awake()
@@ -25,7 +25,7 @@ public abstract class AHpManager : MonoBehaviour
         Born();
     }
 
-    public abstract void TakeDMG(float takedDMG);
+    public abstract void TakeDMG(Transform source, float takedDMG, bool CanKnockBack);
 
     public virtual void Born()
     {
@@ -33,32 +33,31 @@ public abstract class AHpManager : MonoBehaviour
         oldCurrentHP = hp;
     }
 
-    public virtual void BuffHp(float hpBuff)
+    public void BuffHp(float hpBuff)
     {
         oldCurrentHP = hp;
         hp += hpBuff;
     }
 
-    public virtual void BackToOriginHP()
+    public void BackToOriginHP()
     {
         hp = originHp;
     }
 
-    public virtual void BackToOldCurrentHP()
+    public void BackToOldCurrentHP()
     {
         hp = Mathf.Min(hp, oldCurrentHP);
         oldCurrentHP = hp;
     }
 
-    public virtual void SetCurrentHp(float newCurrentHp)
+    public void SetCurrentHp(float newCurrentHp)
     {
         hp = newCurrentHp;
         oldCurrentHP = hp;
     }
 
-    public virtual void ChangeOriginHp(float newOriginHp)
+    public void ChangeOriginHp(float newOriginHp)
     {
         originHp = Mathf.Max(1, newOriginHp);
     }
-
 }

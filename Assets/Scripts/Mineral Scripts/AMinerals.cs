@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
 
 public abstract class AMinerals : MonoBehaviour
@@ -9,15 +7,15 @@ public abstract class AMinerals : MonoBehaviour
     protected float[] listValue;
     protected int index;
     protected int maxIndex;
+    public float CurrentValue {  get; protected set; }
 
     protected virtual void Awake()
     {
         AddListValue();
-        index = 0;
         maxIndex = listValue.Length-1;
     }
 
-    public void Born()
+    public virtual void Born()
     {
         index = 0;
         hpForMineral.ChangeOriginHp(listValue[0]);

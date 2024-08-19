@@ -140,6 +140,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1327190890681519899}
     - target: {fileID: 464338119991656931, guid: 741ffdd8cf1cc9541a0049569f35887c, type: 3}
+      propertyPath: canKnockBack
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 464338119991656931, guid: 741ffdd8cf1cc9541a0049569f35887c, type: 3}
       propertyPath: hitboxWeapon
       value: 
       objectReference: {fileID: 4156081726179079202}

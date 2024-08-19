@@ -11,9 +11,10 @@ public class HitboxWeapon : MonoBehaviour
     {
         AHpManager HpComponent = collision.gameObject.
             GetComponents<Component>().FirstOrDefault(c => c is AHpManager) as AHpManager;
+
         if (HpComponent != null)
         {
-            HpComponent.TakeDMG(weapon.Damage);
+            HpComponent.TakeDMG(gameObject.transform, weapon.Damage, weapon.CanKnockBack);
         }
     }
 }
