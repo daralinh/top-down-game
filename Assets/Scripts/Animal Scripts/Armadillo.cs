@@ -11,7 +11,7 @@ public class Armadillo : AAnimal
     [SerializeField] private float timeToDefense;
     [SerializeField] private int buffHpWhenTakeDMG;
 
-    private Coroutine coroutine;
+    private Coroutine coroutine = null;
 
     public override void DefenseHandler()
     {
@@ -45,8 +45,12 @@ public class Armadillo : AAnimal
 
     protected override void ResetDefense()
     {
-        Debug.Log($"Reset {hpForAnimal.HP}");
-        StopCoroutine(coroutine);
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+            coroutine = null;
+        }
+        
         coroutine = StartCoroutine(Defense());
     }
 
@@ -55,6 +59,7 @@ public class Armadillo : AAnimal
         if (coroutine != null)
         {
             StopCoroutine(coroutine);
+            coroutine = null;
         }
 
         base.DeathEvent();

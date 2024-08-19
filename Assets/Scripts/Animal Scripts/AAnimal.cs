@@ -16,7 +16,6 @@ public abstract class AAnimal : MonoBehaviour
     {
         if (IsDefensing)
         {
-            Debug.Log("defensing");
             ResetDefense();
             return;
         }

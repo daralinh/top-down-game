@@ -10,7 +10,7 @@ public class Slime : AAnimal
     [SerializeField] private float speedToBuff;
 
     private float originSpeed;
-    private Coroutine coroutine;
+    private Coroutine coroutine = null;
 
     private void Start()
     {
@@ -51,7 +51,12 @@ public class Slime : AAnimal
 
     protected override void ResetDefense()
     {
-        StopCoroutine(coroutine);
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+            coroutine = null;
+        }
+
         coroutine = StartCoroutine(Defense());
     }
 
@@ -60,6 +65,7 @@ public class Slime : AAnimal
         if (coroutine != null)
         {
             StopCoroutine(coroutine);
+            coroutine = null;
         }
 
         gameObject.SetActive(false);
