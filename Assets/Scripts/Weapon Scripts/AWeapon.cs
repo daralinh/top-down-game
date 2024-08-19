@@ -5,7 +5,8 @@ public abstract class AWeapon : MonoBehaviour
     [SerializeField]protected float dmg;
     [SerializeField]protected Animator animator;
     [SerializeField]protected SlashEffect slashEffect;
-
+    [SerializeField]protected PolygonCollider2D polygonCollider2D;
+    
     protected PlayerControls playerControls;
     protected PlayerController playerController;
     protected ActiveWeapon activeWeapon;
@@ -13,11 +14,12 @@ public abstract class AWeapon : MonoBehaviour
     public float Damage
     {
         get { return dmg; }
-        set { dmg = value; }
+        private set { dmg = value; }
     }
 
     protected virtual void Awake()
     {
+        polygonCollider2D.enabled = false;
         playerController = GetComponentInParent<PlayerController>();
         playerControls = new PlayerControls();
         activeWeapon = GetComponentInParent<ActiveWeapon>();
@@ -43,9 +45,10 @@ public abstract class AWeapon : MonoBehaviour
         MouseFollowWithOffset();
     }
 
-    public void NotAttack()
+    public void ActionAttackDone()
     {
         slashEffect.gameObject.SetActive(false);
+        polygonCollider2D.enabled = false;
     }
 
     protected virtual void Attacking()
@@ -79,6 +82,7 @@ public abstract class AWeapon : MonoBehaviour
     {
         slashEffect.gameObject.transform.rotation = Quaternion.Euler(-180, 0 ,0);
         slashEffect.gameObject.SetActive(true);
+        polygonCollider2D.enabled = true;
 
         if (playerController.FacingLeft)
         {
@@ -94,6 +98,7 @@ public abstract class AWeapon : MonoBehaviour
     {
         slashEffect.gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
         slashEffect.gameObject.SetActive(true);
+        polygonCollider2D.enabled = true;
 
         if (playerController.FacingLeft)
         {

@@ -10,8 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 7022615609797855372}
   - component: {fileID: 6084190036670592962}
+  - component: {fileID: 4170449158459702705}
   - component: {fileID: 1313823565515640945}
   - component: {fileID: 5173532450253876678}
+  - component: {fileID: 3908286141294156362}
+  - component: {fileID: 7355687124618964351}
   m_Layer: 0
   m_Name: Stone
   m_TagString: Untagged
@@ -86,6 +89,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
+--- !u!95 &4170449158459702705
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8252518778822235456}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8c9f7dcf0a2935844bbd4cb4b1387e2b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!70 &1313823565515640945
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -133,8 +157,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d098c4180a3fe14797f7eea3533f941, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  listSprite:
-  - {fileID: 21300000, guid: 584ece62c83b0d545a0c6f8688688af2, type: 3}
-  - {fileID: 21300000, guid: f4102e7d2abacfd40be0fabca285c4e1, type: 3}
-  - {fileID: 21300000, guid: 2e01fd4de03bc45449e0f747a1d3e8e6, type: 3}
-  - {fileID: 21300000, guid: ae1a427db53fe1e4fb3d46e0062e2280, type: 3}
+  hpForMineral: {fileID: 7355687124618964351}
+--- !u!114 &3908286141294156362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8252518778822235456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98830e0b334cc1b4b92389dc6f7f8991, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeFlashSprite: 0.15
+  whiteMaterial: {fileID: 2100000, guid: 6ffbb821ab4314c4ba83fa66a047e222, type: 2}
+--- !u!114 &7355687124618964351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8252518778822235456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6f294098e88d4542b03568449b859c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  originHp: 0
+  flashSprite: {fileID: 3908286141294156362}
+  aMinerals: {fileID: 5173532450253876678}

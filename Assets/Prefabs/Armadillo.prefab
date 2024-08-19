@@ -13,10 +13,11 @@ GameObject:
   - component: {fileID: 5483827681609337104}
   - component: {fileID: 6249363620978912966}
   - component: {fileID: 6013999646518036583}
-  - component: {fileID: 2678970936508945378}
   - component: {fileID: 1839096958001537239}
+  - component: {fileID: 623072832253353009}
   - component: {fileID: 3468978188620133805}
   - component: {fileID: 5562632037763127668}
+  - component: {fileID: 109062736398366814}
   m_Layer: 0
   m_Name: Armadillo
   m_TagString: Untagged
@@ -174,20 +175,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2678970936508945378
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6835107319268086531}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d698ace5c64f4e4cb7bc0e36a0d27fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  originHp: 40
-  animator: {fileID: 6013999646518036583}
 --- !u!114 &1839096958001537239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,12 +187,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d14cc4aca8fe48241855f742b963e62f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hpManager: {fileID: 2678970936508945378}
+  hpForAnimal: {fileID: 109062736398366814}
   animator: {fileID: 6013999646518036583}
   capsuleCollider2D: {fileID: 5483827681609337104}
   buffHpWhenTakeDMG: 100
-  roamingNoneTarget: {fileID: 3468978188620133805}
+  moveToTarget: {fileID: 3468978188620133805}
   timeToDefense: 5
+--- !u!114 &623072832253353009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6835107319268086531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98830e0b334cc1b4b92389dc6f7f8991, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeFlashSprite: 0.2
+  whiteMaterial: {fileID: 2100000, guid: 6ffbb821ab4314c4ba83fa66a047e222, type: 2}
 --- !u!114 &3468978188620133805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,7 +219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2de36851ac017a04dbdcf7dc054784d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originSpeed: 0.5
+  originSpeed: 0.7
 --- !u!114 &5562632037763127668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,3 +233,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeToChangeDir: 2.5
+--- !u!114 &109062736398366814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6835107319268086531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75364d63a6d551646b0756f39d8bf617, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  originHp: 40
+  flashSprite: {fileID: 623072832253353009}
+  animator: {fileID: 6013999646518036583}

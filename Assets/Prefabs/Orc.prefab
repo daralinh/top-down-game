@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8416084273046385430}
   - component: {fileID: 6908579025784887071}
   - component: {fileID: 7313728433801690168}
+  - component: {fileID: 4118963243231498002}
   m_Layer: 0
   m_Name: Orc
   m_TagString: Untagged
@@ -148,3 +149,15 @@ CapsuleCollider2D:
   m_Offset: {x: -0.0038595938, y: -0.11501855}
   m_Size: {x: 0.4184996, y: 0.20273483}
   m_Direction: 1
+--- !u!114 &4118963243231498002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8280970274897232603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0805e4a32f4f0db47ae616703e4763bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -10,8 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 3059431995270152052}
   - component: {fileID: 1019254619674385957}
+  - component: {fileID: 6191899823799875165}
   - component: {fileID: 2693978825207481776}
   - component: {fileID: 8834999201158311606}
+  - component: {fileID: 7529553203851231985}
+  - component: {fileID: 6169825186208292534}
   m_Layer: 0
   m_Name: Gold
   m_TagString: Untagged
@@ -86,6 +89,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
+--- !u!95 &6191899823799875165
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1659208612940917133}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c439ccb3727cdf944ae26cc70318ad37, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!70 &2693978825207481776
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -133,8 +157,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 683fc6635ade5df4497276411e2f16c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  listSprite:
-  - {fileID: 21300000, guid: d74365e42fa84cc45a6e0692053acce9, type: 3}
-  - {fileID: 21300000, guid: e4a5ab3fe54b0e84fae76eba6c7dce12, type: 3}
-  - {fileID: 21300000, guid: cad34146472708644a6b129ec28a150f, type: 3}
-  - {fileID: 21300000, guid: 8b2b5bbdf20fc2b45be58f72a78f0350, type: 3}
+  hpForMineral: {fileID: 6169825186208292534}
+--- !u!114 &7529553203851231985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1659208612940917133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98830e0b334cc1b4b92389dc6f7f8991, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeFlashSprite: 0.15
+  whiteMaterial: {fileID: 2100000, guid: 6ffbb821ab4314c4ba83fa66a047e222, type: 2}
+--- !u!114 &6169825186208292534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1659208612940917133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6f294098e88d4542b03568449b859c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  originHp: 0
+  flashSprite: {fileID: 7529553203851231985}
+  aMinerals: {fileID: 8834999201158311606}

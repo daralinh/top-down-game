@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 4429913094515163242}
   - component: {fileID: 6016531925366584666}
   - component: {fileID: 6044029787230573015}
+  - component: {fileID: 80877348662586544}
   - component: {fileID: 3749565018374712634}
-  - component: {fileID: 8136540909164111803}
-  - component: {fileID: 4679285177165240611}
+  - component: {fileID: 1763731889841677523}
+  - component: {fileID: 1001684182764258513}
   m_Layer: 0
   m_Name: Slime
   m_TagString: Emeny
@@ -186,8 +187,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a65c7beb88dab148bd73f72115bc7af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hpManager: {fileID: 4679285177165240611}
+  hpForAnimal: {fileID: 1001684182764258513}
   animator: {fileID: 6016531925366584666}
+  capsuleCollider2D: {fileID: 7355132911508771511}
+  moveToTarget: {fileID: 1763731889841677523}
+  timeToBuffSpeed: 1.5
+  speedToBuff: 1.1
+--- !u!114 &80877348662586544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108474609473190031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98830e0b334cc1b4b92389dc6f7f8991, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeFlashSprite: 0.2
+  whiteMaterial: {fileID: 2100000, guid: 6ffbb821ab4314c4ba83fa66a047e222, type: 2}
 --- !u!114 &3749565018374712634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,8 +219,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44e07f57725d834429c78fc652d00723, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToChangeDir: 1.5
---- !u!114 &8136540909164111803
+  timeToChangeDir: 2
+--- !u!114 &1763731889841677523
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -213,8 +232,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2de36851ac017a04dbdcf7dc054784d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1.2
---- !u!114 &4679285177165240611
+  originSpeed: 1.1
+--- !u!114 &1001684182764258513
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -223,8 +242,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2108474609473190031}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d698ace5c64f4e4cb7bc0e36a0d27fc, type: 3}
+  m_Script: {fileID: 11500000, guid: 75364d63a6d551646b0756f39d8bf617, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originHp: 31
+  originHp: 41
+  flashSprite: {fileID: 80877348662586544}
   animator: {fileID: 6016531925366584666}

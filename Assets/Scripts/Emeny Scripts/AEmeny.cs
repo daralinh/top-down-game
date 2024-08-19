@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class AEmeny : MonoBehaviour
 {
-    [SerializeField] protected HpManager hpManager;
+    [SerializeField] protected HpForEmeny hpForEmeny;
     [SerializeField] protected Animator animator;
     [SerializeField] protected CapsuleCollider2D capsuleCollider2D;
 

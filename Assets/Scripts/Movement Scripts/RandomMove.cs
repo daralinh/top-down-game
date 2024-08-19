@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class EmenyRoamingAI : MonoBehaviour
+public class RandomMove : MonoBehaviour
 {
     [SerializeField] private float timeToChangeDir;
     private enum State
@@ -11,11 +11,11 @@ public class EmenyRoamingAI : MonoBehaviour
     }
 
     private State state;
-    private RoamingNoneTarget roamingNoneTarget;
+    private MoveToTarget moveToTarget;
 
     private void Awake()
     {
-        roamingNoneTarget = GetComponent<RoamingNoneTarget>();
+        moveToTarget = GetComponent<MoveToTarget>();
     }
 
     void Start()
@@ -33,7 +33,7 @@ public class EmenyRoamingAI : MonoBehaviour
     {
         while (state == State.Roaming)
         {
-            roamingNoneTarget.ChooseRandomMove();
+            moveToTarget.ChooseRandomMove();
             yield return new WaitForSeconds(timeToChangeDir);
         }
     }

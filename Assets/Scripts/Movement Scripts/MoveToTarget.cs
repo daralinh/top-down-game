@@ -1,16 +1,22 @@
 using UnityEngine;
 
-public class RoamingNoneTarget : MonoBehaviour
+public class MoveToTarget : MonoBehaviour
 {
     [SerializeField] private float originSpeed;
+
     private float speed;
     private Rigidbody2D rb;
     private Vector2 moveDir;
 
+    public float Speed
+    {
+        get { return speed; }
+        private set { speed = value; }
+    }
     public float OriginSpeed
     {
         get { return originSpeed; }
-        set { originSpeed = Mathf.Max(0, value); }
+        private set { originSpeed = Mathf.Max(0, value); }
     }
 
     private void Awake()

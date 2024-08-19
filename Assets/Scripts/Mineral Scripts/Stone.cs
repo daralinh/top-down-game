@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gold : AMinerals
+public class Stone : AMinerals
 {
     protected override void AddListValue()
     {
-        listValue = new int[] {25, 20, 15, 5};
+        listValue = new float[] { 40, 35, 25, 15};
     }
 }
