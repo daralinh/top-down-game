@@ -68,6 +68,7 @@ public class Slime : AAnimal
             coroutine = null;
         }
 
+        IsDefensing = false;
         gameObject.SetActive(false);
     }
 }

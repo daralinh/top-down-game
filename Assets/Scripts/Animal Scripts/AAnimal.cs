@@ -30,9 +30,8 @@ public abstract class AAnimal : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public virtual void Death()
+    public void Death()
     {
-        IsDefensing = false;
         animator.SetTrigger("Death");
     }
 }

@@ -19,13 +19,17 @@ public class Armadillo : AAnimal
 
         animator.SetTrigger("Defense");
         moveToTarget.ChangeSpeedToZero();
-        hpForAnimal.BuffHp(buffHpWhenTakeDMG);
+
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+        }
+
         coroutine = StartCoroutine(Defense());
     }
 
     IEnumerator Defense()
     {
-        Debug.Log($"+ coroutine {hpForAnimal.HP}");
         yield return new WaitForSeconds(timeToDefense);
 
         moveToTarget.BackToOriginSpeed();
@@ -35,7 +39,6 @@ public class Armadillo : AAnimal
         if (hpForAnimal.HP > 0)
         {
             animator.SetBool("Run", true);
-            yield return null;
         }
         else
         {
@@ -48,10 +51,14 @@ public class Armadillo : AAnimal
         if (coroutine != null)
         {
             StopCoroutine(coroutine);
-            coroutine = null;
         }
         
         coroutine = StartCoroutine(Defense());
+    }
+
+    public void DefenseEvent()
+    {
+        hpForAnimal.BuffHp(buffHpWhenTakeDMG);
     }
 
     public override void DeathEvent()
@@ -62,6 +69,7 @@ public class Armadillo : AAnimal
             coroutine = null;
         }
 
-        base.DeathEvent();
+        IsDefensing = false;
+        gameObject.SetActive(false);
     }
 }
