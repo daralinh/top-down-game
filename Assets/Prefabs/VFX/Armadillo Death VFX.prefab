@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 448892837080610021}
   - component: {fileID: 2344200848431430815}
   m_Layer: 0
-  m_Name: Slime Death VFX
+  m_Name: Armadillo Death VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 5324729719879897475}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.33180198, y: 0.067177884, z: 0.012586397}
+  m_LocalPosition: {x: -0.31, y: -1.78, z: 0.053918198}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -223,7 +223,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.19215688, g: 0.82745105, b: 0.8705883, a: 1}
+      maxColor: {r: 0.5568628, g: 0.5568628, b: 0.5568628, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}

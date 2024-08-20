@@ -70,6 +70,6 @@ public class Armadillo : AAnimal
         }
 
         IsDefensing = false;
-        gameObject.SetActive(false);
+        base.DeathEvent();
     }
 }

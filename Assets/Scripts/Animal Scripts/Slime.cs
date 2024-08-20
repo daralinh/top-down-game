@@ -74,6 +74,6 @@ public class Slime : AAnimal
         }
 
         IsDefensing = false;
-        gameObject.SetActive(false);
+        base.DeathEvent();
     }
 }

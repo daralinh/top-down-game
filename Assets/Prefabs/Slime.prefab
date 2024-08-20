@@ -190,7 +190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hpForAnimal: {fileID: 1001684182764258513}
   animator: {fileID: 6016531925366584666}
-  deathVFX: {fileID: 5324729719879897475, guid: 9dc290642282ec84e946d30f56ca02ab, type: 3}
+  deathVFXPrefab: {fileID: 5324729719879897475, guid: 9dc290642282ec84e946d30f56ca02ab, type: 3}
   moveToTarget: {fileID: 1763731889841677523}
   timeToBuffSpeed: 1.5
   speedToBuff: 1.1
@@ -248,7 +248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flashSprite: {fileID: 80877348662586544}
-  originHp: 20
+  originHp: 30
   animator: {fileID: 6016531925366584666}
   knockBack: {fileID: 2320299080676445261}
 --- !u!114 &2320299080676445261

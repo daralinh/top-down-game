@@ -190,7 +190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hpForAnimal: {fileID: 109062736398366814}
   animator: {fileID: 6013999646518036583}
-  deathVFX: {fileID: 5324729719879897475, guid: 9dc290642282ec84e946d30f56ca02ab, type: 3}
+  deathVFXPrefab: {fileID: 5324729719879897475, guid: 28e9d4b6e35c14c4cbb605290c8817a8, type: 3}
   moveToTarget: {fileID: 3468978188620133805}
   knockBack: {fileID: 8523221873274805547}
   timeToDefense: 5

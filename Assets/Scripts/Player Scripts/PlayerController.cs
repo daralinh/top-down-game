@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -10,12 +11,19 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer spriteRenderer;
-    private Vector2 movement;
-    private bool facingLeft = false;
+    [SerializeField] private TrailRenderer trailRenderer;
+    
 
     [Header("---- Parameter ----")]
     [SerializeField] private float moveSpeed;
-    
+    [SerializeField] private float dashSpeed;
+    [SerializeField] private float dashTime;
+    [SerializeField] private float dashCountDown;
+
+    private Vector2 movement;
+    private bool facingLeft = false;
+    private bool isDashing = false;
+
     public bool FacingLeft
     {
         get { return facingLeft; }
@@ -44,7 +52,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        
+        playerControls.Combat.Dash.performed += _ => Dash();
     }
     void Update()
     {
@@ -85,5 +93,25 @@ public class PlayerController : MonoBehaviour
             spriteRenderer.flipX = false;
             FacingLeft = false;
         }
+    }
+
+    private void Dash()
+    {
+        if (!isDashing)
+        {
+            isDashing = true;
+            moveSpeed *= dashSpeed;
+            trailRenderer.emitting = true;
+            StartCoroutine(DashHandler());
+        }
+    }
+
+    private IEnumerator DashHandler()
+    {
+        yield return new WaitForSeconds(dashTime);
+        moveSpeed /= dashSpeed;
+        trailRenderer.emitting = false;
+        yield return new WaitForSeconds(dashCountDown - dashTime);
+        isDashing = false;
     }
 }
