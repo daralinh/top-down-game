@@ -2,9 +2,16 @@ using UnityEngine;
 
 public class HpForEmeny : AHpManager
 {
-    [SerializeField] protected Animator animator;
-    [SerializeField] protected KnockBack knockBack;
-    [SerializeField] protected AEmeny emeny;
+    [Header("---- Components ----")]
+    [SerializeField] private Animator animator;
+    [SerializeField] private KnockBack knockBack;
+    private AEmeny emeny;
+
+    protected override void Awake()
+    {
+        emeny = GetComponent<AEmeny>();
+        base.Awake();
+    }
 
     public override void TakeDMG(Transform source, float takedDMG, bool canKnockBack)
     {

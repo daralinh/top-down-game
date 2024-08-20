@@ -6,12 +6,10 @@ public abstract class ATree : MonoBehaviour
 {
     [SerializeField] protected Sprite[] spriteAlive;
     [SerializeField] protected Sprite[] spriteRoot;
-    [SerializeField] protected Sprite[] spriteBurn;
 
     protected SpriteRenderer spriteRenderer;
     protected Sprite spriteAliveOrigin;
     protected Sprite spriteRootOrigin;
-    protected Sprite spriteBurnOrigin;
 
     protected int originValue;
     protected int valueNow;
@@ -20,10 +18,9 @@ public abstract class ATree : MonoBehaviour
     public int ValueNow;
     public bool Alive;
 
-    protected virtual void Start()
+    protected virtual void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-
         ChooseOriginSprite();
         spriteRenderer.sprite = spriteAliveOrigin;
 
@@ -53,9 +50,6 @@ public abstract class ATree : MonoBehaviour
 
         randomIndex = Random.Range(0, spriteRoot.Length);
         spriteRootOrigin = spriteRoot[randomIndex];
-
-        randomIndex = Random.Range(0, spriteBurn.Length);
-        spriteBurnOrigin = spriteBurn[randomIndex];
     }
 
     protected abstract void GetOriginValue();

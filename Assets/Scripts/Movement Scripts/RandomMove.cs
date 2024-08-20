@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class RandomMove : MonoBehaviour
 {
+    [SerializeField] private MoveToTarget moveToTarget;
     [SerializeField] private float timeToChangeDir;
     private enum State
     {
@@ -11,7 +12,6 @@ public class RandomMove : MonoBehaviour
     }
 
     private State state;
-    private MoveToTarget moveToTarget;
 
     private void Awake()
     {

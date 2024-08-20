@@ -2,8 +2,14 @@ using UnityEngine;
 
 public class HpForMineral : AHpManager
 {
-    [SerializeField] private AMinerals aMinerals;
+    private AMinerals aMinerals;
     public bool SetSmall { get; private set; }
+
+    protected override void Awake()
+    {
+        aMinerals = GetComponent<AMinerals>();
+        base.Awake();
+    }
 
     public override void TakeDMG(Transform source, float takedDMG, bool canKnockBack)
     {

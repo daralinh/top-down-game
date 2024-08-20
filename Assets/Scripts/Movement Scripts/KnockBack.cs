@@ -3,9 +3,11 @@ using UnityEngine;
 
 public class KnockBack : MonoBehaviour
 {
+    [Header("---- Components")]
+    [SerializeField] private MoveToTarget moveToTarget;
+    [Header("---- Parameters ----")]
     [SerializeField] private float time;
     [SerializeField] private float thurst;
-    [SerializeField] private MoveToTarget moveToTarget;
 
     public bool IsKnockBack
     {

@@ -2,9 +2,16 @@ using UnityEngine;
 
 public class HpForAnimal : AHpManager
 {
+    [Header("---- Components ----")]
     [SerializeField] private Animator animator;
     [SerializeField] private KnockBack knockBack;
-    [SerializeField] private AAnimal animal;
+    private AAnimal animal;
+
+    protected override void Awake()
+    {
+        animal = GetComponent<AAnimal>();
+        base.Awake();
+    }
 
     public override void TakeDMG(Transform source, float takedDMG, bool canKnockBack)
     {

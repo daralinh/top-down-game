@@ -2,6 +2,7 @@ using UnityEngine;
 
 public abstract class AMinerals : MonoBehaviour
 {
+    [Header("---- Components ----")]
     [SerializeField] protected HpForMineral hpForMineral;
 
     protected float[] listValue;

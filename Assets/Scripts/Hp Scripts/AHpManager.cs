@@ -2,8 +2,10 @@ using UnityEngine;
 
 public abstract class AHpManager : MonoBehaviour
 {
-    [SerializeField] protected float originHp;
+    [Header("---- Components ----")]
     [SerializeField] protected FlashSprite flashSprite;
+    [Header("---- Parameters ----")]
+    [SerializeField] protected float originHp;
 
     protected float hp;
     protected float oldCurrentHP;

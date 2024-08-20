@@ -5,7 +5,7 @@ public class Slime : AAnimal
 {
     [SerializeField] private MoveToTarget moveToTarget;
 
-
+    [Header("---- Parameters For Buff Speed ----")]
     [SerializeField] private float timeToBuffSpeed;
     [SerializeField] private float speedToBuff;
 
@@ -33,7 +33,6 @@ public class Slime : AAnimal
         if (hpForAnimal.HP > 0)
         {
             animator.SetBool("Run", true);
-            yield return null;
         }
         else
         {
@@ -46,7 +45,14 @@ public class Slime : AAnimal
         base.DefenseHandler();
 
         moveToTarget.ChangeSpeed(moveToTarget.Speed + speedToBuff);
+
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+        }
+
         coroutine = StartCoroutine(Defense());
+
     }
 
     protected override void ResetDefense()
@@ -54,7 +60,6 @@ public class Slime : AAnimal
         if (coroutine != null)
         {
             StopCoroutine(coroutine);
-            coroutine = null;
         }
 
         coroutine = StartCoroutine(Defense());

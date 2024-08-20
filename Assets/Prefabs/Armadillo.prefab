@@ -190,6 +190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hpForAnimal: {fileID: 109062736398366814}
   animator: {fileID: 6013999646518036583}
+  deathVFX: {fileID: 5324729719879897475, guid: 9dc290642282ec84e946d30f56ca02ab, type: 3}
   moveToTarget: {fileID: 3468978188620133805}
   knockBack: {fileID: 8523221873274805547}
   timeToDefense: 5
@@ -206,7 +207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98830e0b334cc1b4b92389dc6f7f8991, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeFlashSprite: 0.2
+  timeFlashSprite: 0.1
   whiteMaterial: {fileID: 2100000, guid: 6ffbb821ab4314c4ba83fa66a047e222, type: 2}
 --- !u!114 &3468978188620133805
 MonoBehaviour:
@@ -233,6 +234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44e07f57725d834429c78fc652d00723, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveToTarget: {fileID: 0}
   timeToChangeDir: 2.5
 --- !u!114 &109062736398366814
 MonoBehaviour:
@@ -246,11 +248,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75364d63a6d551646b0756f39d8bf617, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originHp: 41
   flashSprite: {fileID: 623072832253353009}
+  originHp: 41
   animator: {fileID: 6013999646518036583}
   knockBack: {fileID: 8523221873274805547}
-  animal: {fileID: 1839096958001537239}
 --- !u!114 &8523221873274805547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,6 +264,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6440201f2e1c5184585134de3da9e003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveToTarget: {fileID: 3468978188620133805}
   time: 0.15
   thurst: 5
-  moveToTarget: {fileID: 3468978188620133805}
