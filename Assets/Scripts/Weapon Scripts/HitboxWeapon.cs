@@ -14,6 +14,7 @@ public class HitboxWeapon : MonoBehaviour
 
         if (HpComponent != null)
         {
+            Debug.Log("takeDMGHandler");
             HpComponent.TakeDMG(gameObject.transform, weapon.Damage, weapon.CanKnockBack);
         }
     }

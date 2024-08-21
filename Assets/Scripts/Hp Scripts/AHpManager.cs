@@ -27,7 +27,7 @@ public abstract class AHpManager : MonoBehaviour
         Born();
     }
 
-    public abstract void TakeDMG(Transform source, float takedDMG, bool CanKnockBack);
+    public abstract void TakeDMG(Transform source, float takedDMG, bool canKnockBack);
 
     public virtual void Born()
     {

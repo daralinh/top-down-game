@@ -21,8 +21,6 @@ public class HpForAnimal : AHpManager
 
         hp = Mathf.Max(hp - takedDMG, 0);
 
-        Debug.Log($"{hp}");
-
         if (canKnockBack)
         {
             knockBack.GetKnockBack(source);
