@@ -31,7 +31,6 @@ public abstract class AAnimal : MonoBehaviour
 
     public void DeathVFXEvent()
     {
-        Debug.Log("deathVFX");
         deathVFX.transform.position = transform.position;
         deathVFX.SetActive(true);
     }

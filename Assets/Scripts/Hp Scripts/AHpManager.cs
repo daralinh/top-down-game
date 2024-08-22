@@ -12,14 +12,14 @@ public abstract class AHpManager : MonoBehaviour
 
     public float HP
     {
-        get { return hp; }
-        private set { hp = value; }
+        get => hp;
+        private set => hp = value;
     }
 
     public float OriginHp
     {
-        get { return originHp; }
-        private set { originHp = value; }
+        get => originHp;
+        private set => originHp = value;
     }
 
     protected virtual void Awake()

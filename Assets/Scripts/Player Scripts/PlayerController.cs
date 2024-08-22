@@ -26,8 +26,8 @@ public class PlayerController : MonoBehaviour
 
     public bool FacingLeft
     {
-        get { return facingLeft; }
-        set { facingLeft = value; }
+        get => facingLeft;
+        set => facingLeft = value;
     }
 
     private void Awake()
@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour
         }
         
         playerControls = new PlayerControls();
+        DontDestroyOnLoad(gameObject);
     }
 
     private void OnEnable()

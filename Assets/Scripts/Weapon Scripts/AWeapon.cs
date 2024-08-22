@@ -23,8 +23,8 @@ public abstract class AWeapon : MonoBehaviour
 
     public bool CanKnockBack
     {
-        get { return canKnockBack; }
-        protected set { canKnockBack = value; }
+        get => canKnockBack; 
+        protected set => canKnockBack = value;
     }
 
     protected virtual void Awake()
