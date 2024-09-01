@@ -1,10 +1,8 @@
 using System.Collections;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Singleton<PlayerController>
 {
-    public static PlayerController instance;
-
     private PlayerControls playerControls;
 
     [Header("---- Components ----")]
@@ -30,20 +28,10 @@ public class PlayerController : MonoBehaviour
         set => facingLeft = value;
     }
 
-    private void Awake()
+    protected override void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
-        
+        base.Awake();
         playerControls = new PlayerControls();
-        DontDestroyOnLoad(gameObject);
     }
 
     private void OnEnable()

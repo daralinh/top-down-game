@@ -1,24 +1,21 @@
 using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(MoveToTarget))]
 public class KnockBack : MonoBehaviour
 {
-    [Header("---- Components")]
-    [SerializeField] private MoveToTarget moveToTarget;
-    [Header("---- Parameters ----")]
     [SerializeField] private float time;
     [SerializeField] private float thurst;
 
-    public bool IsKnockBack
-    {
-        get; private set;
-    }
-
+    private MoveToTarget moveToTarget;
     private Rigidbody2D rb;
+
+    public bool IsKnockBack { get; private set; }
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        moveToTarget = GetComponent<MoveToTarget>();
     }
 
     public void GetKnockBack(Transform source)

@@ -1,15 +1,15 @@
 using UnityEngine;
 
+[RequireComponent (typeof(KnockBack))]
 public class HpForEmeny : AHpManager
 {
-    [Header("---- Components ----")]
-    [SerializeField] private Animator animator;
-    [SerializeField] private KnockBack knockBack;
-    private AEmeny emeny;
+    private KnockBack knockBack;
+    private AEnemy emeny;
 
     protected override void Awake()
     {
-        emeny = GetComponent<AEmeny>();
+        knockBack = GetComponent<KnockBack>();
+        emeny = GetComponent<AEnemy>();
         base.Awake();
     }
 

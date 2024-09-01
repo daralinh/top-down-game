@@ -8,16 +8,8 @@ public class MoveToTarget : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 moveDir;
 
-    public float Speed
-    {
-        get { return speed; }
-        private set { speed = value; }
-    }
-    public float OriginSpeed
-    {
-        get { return originSpeed; }
-        private set { originSpeed = Mathf.Max(0, value); }
-    }
+    public float Speed => speed;
+    public float OriginSpeed => originSpeed;
 
     private void Awake()
     {
@@ -36,6 +28,11 @@ public class MoveToTarget : MonoBehaviour
         speed = Mathf.Max(0, newSpeed);
     }
 
+    public void BuffSpeed(float buffToSpeed)
+    {
+        speed += buffToSpeed;
+    }
+
     public void ChangeSpeedToZero()
     {
         speed = 0;
@@ -49,5 +46,15 @@ public class MoveToTarget : MonoBehaviour
     public void ChooseRandomMove()
     {
         moveDir = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
+    }
+
+    public void ChooseTargetDirecion(Vector2 directionTarget)
+    {
+        moveDir = directionTarget;
+    }
+
+    public Vector2 GetMoveDirection()
+    {
+        return moveDir;
     }
 }

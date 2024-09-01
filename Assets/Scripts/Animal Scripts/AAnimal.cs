@@ -5,14 +5,14 @@ public abstract class AAnimal : MonoBehaviour
     [Header("---- Components -----")]
     [SerializeField] protected HpForAnimal hpForAnimal;
     [SerializeField] protected Animator animator;
-    [SerializeField] protected GameObject deathVFXPrefab;
+    [SerializeField] protected GameObject deathVFXGameObject;
     public bool IsDefensing {  get; protected set; }
     protected GameObject deathVFX;
 
     protected void Awake()
     {
         IsDefensing = false;
-        deathVFX = Instantiate(deathVFXPrefab, transform.position, Quaternion.identity);
+        deathVFX = Instantiate(deathVFXGameObject, transform.position, Quaternion.identity);
         deathVFX.SetActive(false);
     }
 

@@ -1,10 +1,9 @@
 using UnityEngine;
 
+[RequireComponent (typeof(FlashSprite))]
 public abstract class AHpManager : MonoBehaviour
 {
-    [Header("---- Components ----")]
-    [SerializeField] protected FlashSprite flashSprite;
-    [Header("---- Parameters ----")]
+    protected FlashSprite flashSprite;
     [SerializeField] protected float originHp;
 
     protected float hp;
@@ -24,6 +23,7 @@ public abstract class AHpManager : MonoBehaviour
 
     protected virtual void Awake()
     {
+        flashSprite = GetComponent<FlashSprite>();
         Born();
     }
 
