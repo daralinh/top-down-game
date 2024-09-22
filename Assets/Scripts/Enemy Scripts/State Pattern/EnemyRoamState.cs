@@ -12,7 +12,7 @@ public class EnemyRoamState : IStateEnemy
         countTimeToChangeDirection = 0;
     }
 
-    public void UpdateState(AEnemy enemy)
+    public void FixedUpdateState(AEnemy enemy)
     {
         countTimeToChangeDirection += Time.deltaTime;
 
@@ -24,6 +24,10 @@ public class EnemyRoamState : IStateEnemy
     }
 
     public void ExitState(AEnemy enemy)
+    {
+    }
+
+    public void UpdateState(AEnemy enemy)
     {
     }
 }

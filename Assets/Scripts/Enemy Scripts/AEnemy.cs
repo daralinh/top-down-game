@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(MoveToTarget))]
@@ -8,16 +9,19 @@ using UnityEngine;
 
 public abstract class AEnemy : MonoBehaviour
 {
+    [SerializeField] protected float atkRange;
     [Header("Set origin speed in Component MoveToTarget")]
     [SerializeField] protected float speedWhenChasing;
-    [SerializeField] protected GameObject deathVFXGameObject;
     [SerializeField] protected float timeToChangeDirectionWhenRoaming;
+    [SerializeField] protected GameObject deathVFXGameObject;
+    protected EnemyArea enemyArea;
 
     protected IStateEnemy stateCurrent;
     protected IStateEnemy roamState;
     protected IStateEnemy chasingPlayerState;
     protected IStateEnemy aTKState;
     protected IStateEnemy deathState;
+    protected IStateEnemy idleState;
 
     protected SpriteRenderer spriteRenderer;
     protected HpForEmeny hpForEmeny;
@@ -27,7 +31,9 @@ public abstract class AEnemy : MonoBehaviour
 
     protected bool isFacingLeft;
     protected GameObject myDeathVFX;
+    protected List<Node> pathToPlayer;
 
+    public bool IsPlayerNearby { get; private set; }
     public float TimeToChangeDirectionWhenRoaming => timeToChangeDirectionWhenRoaming;
 
     protected virtual void Awake()
@@ -37,34 +43,37 @@ public abstract class AEnemy : MonoBehaviour
         hpForEmeny = GetComponent<HpForEmeny>();
         moveToTarget = GetComponent<MoveToTarget>();
         rb = GetComponent<Rigidbody2D>();
+        enemyArea = GetComponentInParent<EnemyArea>();
 
         roamState = new EnemyRoamState();
         chasingPlayerState = new EnemyChasingPlayerState();
         aTKState = new EnemyATKPlayerState();
         deathState = new DeathEnemyState();
+        idleState = new EnemyIdleState();
 
+        rb.freezeRotation = true;
         isFacingLeft = false;
         myDeathVFX = Instantiate(deathVFXGameObject, transform.position, Quaternion.identity);
         myDeathVFX.SetActive(false);
+        pathToPlayer = null;
     }
 
     protected virtual void Start()
     {
         stateCurrent = roamState;
         stateCurrent.EnterState(this);
+        transform.position = new Vector3(transform.position.x, transform.position.y, 0);
     }
 
     protected virtual void Update()
     {
+        stateCurrent.UpdateState(this);
         FlipSprite();
     }
 
     protected virtual void FixedUpdate()
     {
-        if (stateCurrent != null)
-        {
-            stateCurrent.UpdateState(this);
-        }
+        stateCurrent.FixedUpdateState(this);
     }
 
     public void SetAnimationTrigger(string content)
@@ -72,7 +81,22 @@ public abstract class AEnemy : MonoBehaviour
         animator.SetTrigger(content);
     }
 
+    // Idle State
+    public void ChangeStateToIdle()
+    {
+        stateCurrent.ExitState(this);
+        stateCurrent = idleState;
+        stateCurrent.EnterState(this);
+    }
+
     // Roam State
+    public void ChangeStateToRoam()
+    {
+        stateCurrent.ExitState(this);
+        stateCurrent = roamState;
+        stateCurrent.EnterState(this);
+    }
+
     public void ChooseRandomMove()
     {
         moveToTarget.ChooseRandomMove();
@@ -81,22 +105,10 @@ public abstract class AEnemy : MonoBehaviour
     // Take DMG State
     public virtual void HandlerTakeDMG()
     {
-
     }
 
-    public void TakeDMGEvent()
+    public virtual void TakeDMGEvent()
     {
-        if (stateCurrent is EnemyATKPlayerState)
-        {
-            stateCurrent.ExitState(this);
-        }
-    }
-
-    // Death State
-    public virtual void DeathEvent()
-    {
-        gameObject.SetActive(false);
-        myDeathVFX.SetActive(false);
     }
 
     // Chasing State
@@ -116,6 +128,27 @@ public abstract class AEnemy : MonoBehaviour
         moveToTarget.ChangeSpeed(speedWhenChasing);
     }
 
+    public bool FindPathToPlayer()
+    {
+        pathToPlayer = enemyArea.PathToPlayer(gameObject);
+        return pathToPlayer != null;
+    }
+
+    public void MoveFollowNodeInPathToPlayer()
+    {
+        if (pathToPlayer == null || pathToPlayer.Count == 0)
+        {
+            return;
+        }
+
+        Node targetNode = pathToPlayer[0];
+        moveToTarget.ChooseTargetDirecion(((Vector2)targetNode.transform.position - rb.position).normalized);
+
+        if (Vector2.Distance(rb.position, targetNode.transform.position) <= 0.1f)
+        {
+            pathToPlayer.RemoveAt(0);
+        }
+    }
 
     // Death State
     public void DeathVFXEvent()
@@ -124,14 +157,20 @@ public abstract class AEnemy : MonoBehaviour
         myDeathVFX.SetActive(true);
     }
 
+    public virtual void DeathEvent()
+    {
+        gameObject.SetActive(false);
+        myDeathVFX.SetActive(false);
+    }
+
     public void Death()
     {
+        stateCurrent.ExitState(this);
         stateCurrent = deathState;
         stateCurrent.EnterState(this);
     }
 
     // Void About Change Speed
-
     public void ChangeSpeedToZero()
     {
         moveToTarget.ChangeSpeedToZero();
@@ -154,11 +193,6 @@ public abstract class AEnemy : MonoBehaviour
     }
 
     // Sprite
-    public Vector2 GetMoveDirection()
-    {
-        return moveToTarget.GetMoveDirection();
-    }
-
     public void FlipSprite()
     {
         if (stateCurrent is EnemyRoamState)
@@ -181,23 +215,21 @@ public abstract class AEnemy : MonoBehaviour
             }
             return;
         }
+
+        if (moveToTarget.GetMoveDirection().x < transform.position.x)
+        {
+            if (!isFacingLeft)
+            {
+                spriteRenderer.flipX = true;
+                isFacingLeft = true;
+            }
+        }
         else
         {
-            if (moveToTarget.GetMoveDirection().x < transform.position.x)
+            if (isFacingLeft)
             {
-                if (!isFacingLeft)
-                {
-                    spriteRenderer.flipX = true;
-                    isFacingLeft = true;
-                }
-            }
-            else
-            {
-                if (isFacingLeft)
-                {
-                    spriteRenderer.flipX = false;
-                    isFacingLeft = false;
-                }
+                spriteRenderer.flipX = false;
+                isFacingLeft = false;
             }
         }
     }

@@ -8,6 +8,10 @@ public class DeathEnemyState : IStateEnemy
 
     public void UpdateState(AEnemy enemy)
     {
+    }
+
+    public void FixedUpdateState(AEnemy enemy)
+    {
 
     }
 

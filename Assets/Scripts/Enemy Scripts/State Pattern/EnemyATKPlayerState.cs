@@ -13,6 +13,11 @@ public class EnemyATKPlayerState : IStateEnemy
 
     public void ExitState(AEnemy enemy)
     {
+        enemy.ChangeStateToIdle();
+    }
+
+    public void FixedUpdateState(AEnemy enemy)
+    {
     }
 
     public void UpdateState(AEnemy enemy)

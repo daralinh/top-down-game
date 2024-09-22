@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class RatfolkAxe : AEnemy
+public class Cacodaemon : AEnemy
 {
     protected override void Awake()
     {
@@ -25,6 +25,11 @@ public class RatfolkAxe : AEnemy
     public override void HandlerTakeDMG()
     {
         base.HandlerTakeDMG();
+    }
+
+    public override void TakeDMGEvent()
+    {
+        base.TakeDMGEvent();
     }
 
     public override void DeathEvent()
